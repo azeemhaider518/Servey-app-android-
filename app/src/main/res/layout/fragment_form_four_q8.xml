@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed">
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="8 of 9"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:text="Total time that the Polling Station remained captured  \n پولنگ اسٹیشن یا پولنگ بوتھ پر قبضہ کتنی دیر  رہا؟ "
+        android:textColor="#808080"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/timeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <EditText
+            android:id="@+id/hour"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_edittext"
+            android:gravity="center|center_horizontal"
+            android:inputType="number"
+            android:maxLength="3"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/minute"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_edittext"
+            android:gravity="center|center_horizontal"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="5dp"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeLayout"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/hourTv"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Hours"
+            android:textSize="24sp"
+            android:gravity="center"
+             />
+
+        <TextView
+            android:id="@+id/minuteTv"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Minutes"
+            android:textSize="24sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <TimePicker
+        android:id="@+id/simpleTimePickerFormFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:background="@color/timerbackground"
+        android:textColor="#ffffff"
+        android:timePickerMode="spinner"
+        android:visibility="gone" />
+</RelativeLayout>
+

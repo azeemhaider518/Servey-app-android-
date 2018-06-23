@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="7 of 9"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Impact of interference on polling process \n انتخابی عمل میں رکاوٹ کے اثرات"
+        />
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:weightSum="19">
+
+                <Button
+                    android:id="@+id/PollingprocesstemporarilyhaltedFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Polling process temporarily halted \n پولنگ اسٹیشن پر قبضہ"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/VotersbarredfromenteringthePollingStationFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Voters barred from entering the Polling Station \n ووٹروں کو پولنگ اسٹیشن میں داخلے کی اجازت نہیں دی جارہی"
+                    android:textColor="#ffffff" />
+
+                <Button
+
+                    android:id="@+id/OnlysomevotersallowedtoenterthePollingStationFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Only some voters allowed to enter the Polling Station \n صرف مخصوص ووٹروں کو  پولنگ اسٹیشن میں داخل ہونے دیا جارہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/UnauthorizedpersonstampingballotpapersFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Unauthorized person(s) stamping ballot papers \n 	بیلٹ پیپر پر غیرمجاز افراد ٹھپے لگا رہے ہیں"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/VoterspresentinsidePollingStationpreventedfrompollingButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Voters present inside Polling Station prevented from polling \n  پولنگ اسٹیشن میں موجود ووٹروں کو ووٹ ڈالنے سے روکا جارہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/BallotboxestakenoutofthePollingStationButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Ballot boxes taken out of the Polling Station \n بیلٹ باکس پولنگ اسٹیشن سے باہر لے جائےجارہے ہیں"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/GunfiringatthePollingStationButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Gun-firing (aerial or otherwise) at the Polling Station \n پولنگ اسٹیشن میں فائرنگ کی جارہی ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/PollingstafftakenhostageButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Polling staff taken hostage \n  پولنگ عملے کو محبوس  یا محصور کرلیا گیا "
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/SecuritypersonneltakenhostageButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Security personnel taken hostage \n  پولنگ عملے کو محبوس  یا محصور کرلیا گیا/"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/VoterstakenhostageButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Voters taken hostage \n  ووٹروں کو محبوس  یا محصور کرلیا گیا/"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/PollingstaffphysicallyattackedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Polling staff physically attacked \n  پولنگ عملے پر  جسمانی تشددکیا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/PollingstafharrassedintimidatedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Polling staff harrassed or intimidated \n  پولنگ عملے کو ہراساں یا ڈرایا دھمکایا جا رہا ہے "
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/SecuritypersonnelphysicallyattackeButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Security personnel physically attacked \n  سکیورٹی عملے پر  جسمانی تشددکیا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/SecuritypersonnelharrassedntimidatedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Security personnel harrassed or intimidated \n  سکیورٹی عملے کو ہراساں یا ڈرایا دھمکایا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/VotersphysicallyattackedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Voters physically attacked \n  ووٹروں پر  جسمانی تشددکیا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/VotersharrassedorintimidatedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="VVoters harrassed or intimidated \n  ووٹروں کو ہراساں یا ڈرایا دھمکایا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/PollingmaterialsdamagedButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Polling materials damaged \n  الیکشن مواد کو نقصان پہنچایا جا رہا ہے"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/OtherpleasespecifyButtonFormNine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+                    android:text="Other, please specify: \n  دیگر"
+                    android:textColor="#ffffff" />
+                <Button
+                    android:id="@+id/lol"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_selector"
+
+                    android:textColor="#ffffff" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+

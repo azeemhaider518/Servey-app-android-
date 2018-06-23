@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="4 of 13"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:maxLines="2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Location of Incident \n تشدد کے واقعے کا مقام"
+        />
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/InsidePollingStationpremisesButtonFormTwelve"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Inside Polling Station premises \n پولنگ اسٹیشن کے اندر" />
+
+        <Button
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:id="@+id/OutsidePollingStationpremisesButtonFormTwelve"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Outside Polling Station premises \n پولنگ اسٹیشن کے ارد گرد" />
+
+        <Button
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:id="@+id/OtherButtonFormTwelve"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="Other \n کسی اور مقام پر" />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+

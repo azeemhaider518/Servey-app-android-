@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="12 of 12"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Victims included - Pick all that apply"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+ >
+
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="General voters"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/checkBox1"
+            />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn1"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:text="Women"
+            android:layout_below="@+id/btn1"
+            android:layout_toLeftOf="@+id/checkBox2"/>
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn2"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:text="Transgender"
+            android:layout_below="@id/btn2"
+            android:layout_toLeftOf="@+id/checkBox3"/>
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn3"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:text="Non-Muslims"
+            android:layout_below="@id/btn3"
+            android:layout_toLeftOf="@+id/checkBox4"/>
+
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn4"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:text="Persons with Disabilities"
+            android:layout_below="@id/btn4"
+            android:layout_toLeftOf="@+id/checkBox5"/>
+
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn5"
+            android:visibility="visible"
+            android:layout_alignParentRight="true"/>
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:text="Any Other"
+            android:layout_below="@id/btn5"
+            android:layout_toLeftOf="@+id/checkBox6"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+

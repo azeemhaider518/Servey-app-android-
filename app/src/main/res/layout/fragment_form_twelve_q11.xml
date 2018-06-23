@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="10 of 13"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:maxLines="20"
+
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/topLable"
+        android:text="Total number of injured persons \n واقعے میں زخمی ہونے والے افراد کی تعداد"
+        />
+
+
+    <EditText
+        android:id="@+id/ans11EditTextFormTwelve"
+        android:textColor="#ffffff"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textview"
+        android:background="@drawable/rounded_shape_edittext"
+        android:layout_width="300dp"
+        android:gravity="center|center_horizontal"
+        android:layout_height="100dp"
+
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+

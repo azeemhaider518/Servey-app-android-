@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="4 of 7"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:textColor="#808080"
+        android:gravity="center"
+        android:maxLines="5"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Name of person(s) interrupting polling process (if names are known) \n انتخابی عمل میں رکاوٹ ڈالنے والے کا نام  اگر معلوم ہو تو لکھیں"
+        />
+
+
+    <EditText
+        android:id="@+id/q5EditTextFormNine"
+        android:textColor="#ffffff"
+        android:layout_below="@id/textview"
+        android:layout_marginTop="30sp"
+        android:background="@drawable/rounded_shape_edittext"
+        android:layout_width="300dp"
+        android:gravity="center|center_horizontal"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+

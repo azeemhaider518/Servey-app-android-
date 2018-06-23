@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="11 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Have you confirmed whether you are registered as a voter?  \n کیا آپ نے تصدیق کی ہے   کہ آپ کا بطور ووٹراندراج ہو چکا ہے؟ "
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/yes11ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Yes\n ہاں" />
+
+        <Button
+            android:id="@+id/no11ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_selector"
+            android:text="No \n نہیں" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

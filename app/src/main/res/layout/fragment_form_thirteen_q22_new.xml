@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="22 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="If yes, please describe briefly  \n اگر ہاں تو اس کی مختصر تفصیل لکھیں"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+
+    <EditText
+        android:id="@+id/ans22EditText"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textview"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:background="@drawable/rounded_shape_edittext"
+        android:gravity="center|center_horizontal"
+        android:inputType="text"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>
+

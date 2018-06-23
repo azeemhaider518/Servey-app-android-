@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Survey Application</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">LogOut</string>
+    <string name="title_activity_form_one">FormOne</string>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="6 of 8"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="20sp"
+        android:textColor="#808080"
+        android:gravity="center"
+        android:maxLines="10"
+        android:lines="3"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Hourly Turnout \n ڈالےگئے ووٹوں کی تعداد"
+        />
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/parentQ6FormTenLayout"
+            android:orientation="vertical">
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>

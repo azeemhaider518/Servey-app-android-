@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="1 of 9"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:text="Polling Station Number \n پولنگ اسٹیشن کا نمبر"
+        android:id="@+id/textview"
+        android:textColor="#808080"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <EditText
+        android:id="@+id/ans1EditTextFormNine"
+        android:background="@drawable/rounded_shape_edittext"
+        android:layout_width="200dp"
+        android:textColor="#ffffff"
+        android:maxLength="3"
+        android:gravity="center|center_horizontal"
+        android:layout_height="60dp"
+        android:inputType="number"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
+

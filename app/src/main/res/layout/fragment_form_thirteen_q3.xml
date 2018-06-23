@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="2 of 5"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Type of Ad \n اشتہار کی قسم"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+
+    <TextView
+        android:text="Portrait \n پورٹریٹ"
+        android:id="@+id/advertType"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"/>
+
+    <TextView
+        android:text="Are Potraits displayed or not \n لگے ہوئے ہیں یا نہیں"
+        android:id="@+id/advertQuestion"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/advertType"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:layout_below="@+id/advertQuestion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:weightSum="2"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/yes_btn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Yes \n ہاں" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/no_btn"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="No \n نہیں" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

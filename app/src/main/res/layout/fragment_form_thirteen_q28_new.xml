@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="28 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Details of goods distributed \n کون سی اشیاء  دی گئیں تفصیل لکھیں"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+
+    <EditText
+        android:id="@+id/ans28EditText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textview"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:background="@drawable/rounded_shape_edittext"
+        android:gravity="center|center_horizontal"
+        android:inputType="text"
+        android:textColor="#ffffff" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/textview"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_marginTop="25dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:orientation="vertical">-->
+
+
+        <!--<Button-->
+            <!--android:id="@+id/yes28ButtonFormThirteen"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:background="@drawable/bg_selector"-->
+            <!--android:text="Yes\n ہاں" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/no28ButtonFormThirteen"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:background="@drawable/bg_selector"-->
+            <!--android:text="No \n نہیں" />-->
+
+
+    <!--</LinearLayout>-->
+
+    <TextView
+        android:id="@+id/txtCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:text="1/2"
+        android:textColor="#288e7e"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
+

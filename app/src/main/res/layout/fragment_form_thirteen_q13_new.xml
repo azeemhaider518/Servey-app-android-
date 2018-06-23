@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="13 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/topLable"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="6"
+                android:text="Are the polling stations established in your vicinity are easily accessible for women voters? \n کیا آپ کے علاقے میں بنائے گئے پولنگ اسٹیشنوں کا فاصلہ خواتین ووٹروں کے لئے موزوں ہے؟"
+                android:textColor="#808080"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:paddingBottom="15dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/yes13ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Yes\n ہاں" />
+
+        <Button
+            android:id="@+id/no13ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_selector"
+            android:text="No \n نہیں" />
+
+        <Button
+            android:id="@+id/dontKnow13ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_selector"
+            android:text="Dont' Know \n معلوم نہیں" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+

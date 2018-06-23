@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="16 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Precise Location \n جگہ کا نام "
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <EditText
+        android:id="@+id/ans16EditText"
+        android:background="@drawable/rounded_shape_edittext"
+        android:layout_width="200dp"
+        android:textColor="#ffffff"
+        android:gravity="center|center_horizontal"
+        android:layout_height="60dp"
+        android:inputType="text"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
+

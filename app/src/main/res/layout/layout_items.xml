@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:id="@+id/mainLayout"
+    android:background="@drawable/rounded_shape"
+    android:padding="0dp">
+
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:background="@drawable/white_circle"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="1"
+        android:textColor="#627989"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/hajiNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/counter"
+        android:gravity="left"
+        android:textColor="#4D4D4D"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/urduTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/hajiNameTextView"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/counter"
+        android:gravity="right|center"
+        android:textColor="#4D4D4D"
+        android:textSize="15sp" />
+
+
+</RelativeLayout>

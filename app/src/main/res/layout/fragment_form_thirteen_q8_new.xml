@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="8 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@+id/topLable"
+        android:layout_marginTop="30dp"
+        android:alwaysDrawnWithCache="false"
+        android:fadeScrollbars="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Has any election activity conducted by the candidate or political party at any of the worship places, including Mosque, Temple, Church, Gurdwara, Imambargah etc., in your area? \n کیا آپ کے علاقے کی عبادت گاہوں(مسجد، مدرسہ ، مندر، گرجا گھر ، گرودوارہ ، امام بارگاہ، دربار وغیرہ)میں امیدوار یا کسی پارٹی کی طرف سے  الیکشن کی کوئی سرگرمی منعقد کی گئی ؟"
+                android:textColor="#808080"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_below="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/yes8ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Yes\n ہاں" />
+
+        <Button
+            android:id="@+id/no8ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_selector"
+            android:text="No \n نہیں" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+

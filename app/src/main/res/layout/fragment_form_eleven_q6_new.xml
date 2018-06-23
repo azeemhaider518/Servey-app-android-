@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="6 of 11"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:text="Vote Excluded from the Count \n گنتی سے خارج کیے گئے ووٹوں کی تعداد"
+        android:id="@+id/textview"
+        android:textColor="#808080"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:lines="3"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <EditText
+        android:id="@+id/ans5_3EditTextFormEleven"
+        android:background="@drawable/rounded_shape_edittext"
+        android:layout_width="200dp"
+        android:gravity="center|center_horizontal"
+        android:layout_height="60dp"
+        android:inputType="number"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
+

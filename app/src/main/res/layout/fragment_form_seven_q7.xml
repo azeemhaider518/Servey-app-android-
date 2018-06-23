@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="7 of 7"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="20sp"
+        android:textColor="#808080"
+        android:gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Election material available at polling station at PS \n پولنگ بوتھ کی سطح پر درکار انتخابی سامان کی موجودگی کا مشاہدہ"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:gravity="center_vertical"
+
+        android:weightSum="8"
+
+        android:orientation="vertical">
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/IndelibleInkButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="Indelible Ink \n انمٹ سیاہی والی دواتیں" />
+
+        <Button
+
+            android:id="@+id/StampforVoteCastingButtonFormSeven"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_selector"
+            android:text="Stamp for Vote Casting \n نو خانوں والی مہر"
+            android:textColor="#ffffff" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/OfficialStampButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Official Stamp \n سرکاری مہر" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/BallotBoxesButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Ballot Boxes \n بیلٹ باکس(Ballot Box)" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/SecrecyScreenButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Secrecy Screen \n سیکریسی سیکرین" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/ElectoralRollswithVotersPicsButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Electoral Rolls with Voters' Pics \n  ووٹر کی تصاویر والی انتخابی فہرستیں" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/ElectoralRollswithoutVotersPicsButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Electoral Rolls without Voters' Pics \n  ووٹر کی بغیر تصاویر والی انتخابی فہرستیں" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/InkPadButtonFormSeven"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:text="Ink Pad \n  سیاہی پیڈ" />
+
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
+

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="3 of 7"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:maxLines="4"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Specify the hurdles created as a result of the interference \n انتخابی عمل میں کس طرح کی رکاوٹ پیش آئی؟"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_height="match_parent">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+
+        android:weightSum="5"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/pollingAgentButtonFormNine"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Capture of Polling Station \n پولنگ اسٹیشن پر قبضہ" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/PartyWorkerFormNine"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="Attack on Polling Station \n پولنگ اسٹیشن پر حملہ" />
+        <Button
+
+            android:id="@+id/SuspensionofpollingprocessduetoheavyvotertrafficFormNine"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="Suspension of polling process due to heavy voter traffic \n ووٹروں کےرش کی وجہ سے انتخابی عمل کی معطّلی" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/IncidentofviolenceinornearthePollingStationButtonFormNine"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="Incident of violence in or near the Polling Station \n  پولنگ اسٹیشن کی حدود کے اندر یا قریب تشدد کا واقعہ" />
+
+
+        <Button
+            android:id="@+id/OtherpleasespecifyButtonFormNine"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_selector"
+            android:text="Other, please specify \n دیگررکاوٹیں"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
+

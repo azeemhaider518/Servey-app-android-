@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="6 of 10"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#808080"
+        android:maxLines="2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Source of Information \n آپ کو یہ معلومات کس سے ملیں؟"
+        />
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayoutQuestionFourFormOne"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:weightSum="4"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/pollingAgentButtonFormThree"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Polling Agent \n پولنگ ایجنٹ" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/PartyWorker"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_height="0dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:text="Party Worker \n پارٹی ورکر" />
+        <Button
+
+            android:id="@+id/ElectionOfficialsFormThree"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="Election Officials \n انتخابی عملہ" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/anyOtherButtonFormThree"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:background="@drawable/bg_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="Any Other\n دیگرذرائع" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+

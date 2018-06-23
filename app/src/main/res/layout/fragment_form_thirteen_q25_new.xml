@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="25 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Has any candidate distributed goods (cash, motorcycles, bicycles, sewing machines, food etc.) to induce voters in your area? \n کیا آپ کے علاقے میں کسی امیدوار کی طرف سے ووٹروں کو اپنی طرف راغب کرنے کے لئے کوئی اشیاء (نقد رقم ، پانی کا نلکا ، موٹرسائیکل، سائیکل،  سلائی مشین یا کھانا وغیرہ) تقسیم کی گئیں؟"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="7"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/yes25ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_selector"
+            android:text="Yes\n ہاں" />
+
+        <Button
+            android:id="@+id/no25ButtonFormThirteen"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_selector"
+            android:text="No \n نہیں" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

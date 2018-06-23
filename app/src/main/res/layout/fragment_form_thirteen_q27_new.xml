@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="#E1E2D4"
+        android:gravity="center"
+        android:text="27 of 28"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Political Affiliation \n سیاسی وابستگی"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:textColor="#808080"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoComplete27"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text=""
+            android:background="@drawable/rounded_shape_edittext"
+            android:textColor="#ffffff"
+            android:gravity="center|center_horizontal"
+            android:inputType="text" />
+
+        <ScrollView
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/btnContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+        <!--<Button-->
+            <!--android:id="@+id/yes27ButtonFormThirteen"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:background="@drawable/bg_selector"-->
+            <!--android:text="Yes\n ہاں" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/no27ButtonFormThirteen"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:background="@drawable/bg_selector"-->
+            <!--android:text="No \n نہیں" />-->
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:text="1/2"
+        android:textColor="#288e7e"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
+

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ededed"
+    android:id="@+id/linearLayoutFormOneQuestion4"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/topLable"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:background="#E1E2D4"
+        android:text="1 of 9"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:textColor="#808080"
+        android:id="@+id/textview"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:maxLines="4"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLable"
+        android:text="Source of Information \n آپ کو یہ معلومات کیسے حاصل ہوئیں؟"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginTop="25dp">
+
+        <LinearLayout
+
+            android:id="@+id/linearlayoutQuestionFourFormOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+           >
+
+
+            <Button
+                android:id="@+id/directObservationButtonFormFour"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+
+                android:background="@drawable/bg_selector"
+                android:text="Direct Observation \n براہِ راست مشاہدہ"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/pollingAgentButtonFormFour"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+
+                android:background="@drawable/bg_selector"
+                android:text="Polling Agent \n 	پولنگ ایجنٹ"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/PartyWorkerFormFour"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_selector"
+                android:text="Party Worker \n 	پارٹی ورکر"
+                android:textColor="#ffffff" />
+
+            <Button
+
+                android:id="@+id/ElectionOfficialsFormFour"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+
+                android:background="@drawable/bg_selector"
+                android:text="Election Officials \n انتخابی عملہ"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/anyOtherButtonFormFour"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_selector"
+                android:text="Any Other \n دیگر ذرائع"
+                android:textColor="#ffffff" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>
+
