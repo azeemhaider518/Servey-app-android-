@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -31,6 +33,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fafen.survey.FormFifteen.EmrgFormTwo;
+import com.fafen.survey.FormFourteen.EmrgFormOne;
+import com.fafen.survey.Util.Utiles;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,10 +46,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static com.fafen.survey.Util.Utiles.alert;
+import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
+
 public class EmrgFromThree extends AppCompatActivity {
 
 
     private Location currentLocation;
+    boolean doubleBackToExitPressedOnce=false;
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = "EmrgFromThree";
@@ -77,7 +86,7 @@ public class EmrgFromThree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_thirteen);
         context = this;
-
+        Utiles.setupUI(findViewById(R.id.parent),this);
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         final String currentDateandTime = df.format(Calendar.getInstance().getTime());
 
@@ -627,5 +636,38 @@ public class EmrgFromThree extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
+    @Override
+    public void onBackPressed() {
+
+        if (mPager.getCurrentItem() == 0) {
+            alert(EmrgFromThree.this);
+
+            return;
+        }else if(doubleBackToExitPressedOnce){
+            alert(EmrgFromThree.this);
+
+            return;
+        }
+
+
+        else{
+            backButton.performClick();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+    }
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.fafen.survey.FormFourteen;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -25,6 +27,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -32,6 +35,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fafen.survey.FormTwo.FormTwo;
+import com.fafen.survey.NewFormSeven.FormSeven;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,10 +48,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+
+import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
+
 public class EmrgFormOne extends AppCompatActivity {
 
 
     private Location currentLocation;
+    private boolean doubleBackToExitPressedOnce=false;
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = "EmrgFormOne";
@@ -80,6 +89,7 @@ public class EmrgFormOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_thirteen);
         context = this;
+        setupUI(findViewById(R.id.parent));
 
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         final String currentDateandTime = df.format(Calendar.getInstance().getTime());
@@ -238,15 +248,7 @@ public class EmrgFormOne extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        q1BtnId=0;
 
-        finish();
-        super.onBackPressed();  // optional depending on your needs
-
-    }
 
     public void setCurrentItem(int item, boolean smoothScroll) {
         mPager.setCurrentItem(item, smoothScroll);
@@ -724,7 +726,82 @@ public class EmrgFormOne extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+    public  void setupUI(View view) {
 
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(EmrgFormOne.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (mPager.getCurrentItem() == 0) {
+            alert(EmrgFormOne.this);
+
+            return;
+        }else if(doubleBackToExitPressedOnce){
+            alert(EmrgFormOne.this);
+
+            return;
+        }
+
+
+        else{
+            backButton.performClick();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+    }
+
+
+    public  static void alert(final Activity activity){
+        new AlertDialog.Builder(activity)
+                .setTitle("Alert!")
+                .setMessage("Are you sure want to quit?")
+
+
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                q1BtnId=0;
+                                activity.finish();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.dismiss();
+                            }
+                        })
+                .show();
+
+    }
 }
 
 

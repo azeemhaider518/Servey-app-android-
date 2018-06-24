@@ -912,7 +912,6 @@ public class FormSeven extends AppCompatActivity
                                         btnselected = mButton2.getText().toString();
                                         ans3_1 = input.getText().toString();
                                         String value = ans3_1;
-                                        value = value.replace(" ","");
                                         Log.v("Answer3","Answer input: "+input.getText().toString());
                                         if (ans3_1!=null && value.length()>0){
                                             Log.v("Answer3","3:"+ ans3_1);
