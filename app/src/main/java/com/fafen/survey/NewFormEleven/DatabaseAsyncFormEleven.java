@@ -55,9 +55,10 @@ public class DatabaseAsyncFormEleven extends AsyncTask<String,Void ,String> {
             String ans8 = params[8];
             String ans9 = params[9];
             String ans10 = params[10];
-            String date = params[11];
-            String lati = params[12];
-            String longi = params[13];
+            String ans11 = params[11];
+            String date = params[12];
+            String lati = params[13];
+            String longi = params[14];
 
             Log.e("Database",id+""+
                     ans1+":"+
@@ -70,6 +71,7 @@ public class DatabaseAsyncFormEleven extends AsyncTask<String,Void ,String> {
                     ans8+":"+
                     ans9+":"+
                     ans10+":"+
+                    ans11+":"+
                     lati+":"+
                     longi);
 
@@ -104,6 +106,8 @@ public class DatabaseAsyncFormEleven extends AsyncTask<String,Void ,String> {
                             URLEncoder.encode("ans9","UTF-8")+ "="+ URLEncoder.encode(ans9,"UTF-8")
                             +"&"+
                             URLEncoder.encode("ans10","UTF-8")+ "="+ URLEncoder.encode(ans10,"UTF-8")
+                            +"&"+
+                            URLEncoder.encode("ans11","UTF-8")+ "="+ URLEncoder.encode(ans10,"UTF-8")
                             +"&"+
                             URLEncoder.encode("date","UTF-8")+ "="+ URLEncoder.encode(date,"UTF-8")
                             +"&"+

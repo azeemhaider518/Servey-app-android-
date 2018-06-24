@@ -55,11 +55,11 @@ public class DatabaseAsyncFormNine extends AsyncTask<String,Void ,String> {
             String ans5 = params[5];
             String ans6 = params[6];
             String ans7 = params[7];
-            String ans8 = params[8];
-            String ans9 = params[9];
-            String date = params[10];
-            String lati = params[11];
-            String longi = params[12];
+          /*  String ans8 = params[8];
+            String ans9 = params[9];*/
+            String date = params[8];
+            String lati = params[9];
+            String longi = params[10];
             URL url = new URL(ServerURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -85,10 +85,10 @@ public class DatabaseAsyncFormNine extends AsyncTask<String,Void ,String> {
                             URLEncoder.encode("ans6","UTF-8")+ "="+ URLEncoder.encode(ans6,"UTF-8")
                             +"&"+
                             URLEncoder.encode("ans7","UTF-8")+ "="+ URLEncoder.encode(ans7,"UTF-8")
-                            +"&"+
+                           /* +"&"+
                             URLEncoder.encode("ans8","UTF-8")+ "="+ URLEncoder.encode(ans8,"UTF-8")
                             +"&"+
-                            URLEncoder.encode("ans9","UTF-8")+ "="+ URLEncoder.encode(ans9,"UTF-8")
+                            URLEncoder.encode("ans9","UTF-8")+ "="+ URLEncoder.encode(ans9,"UTF-8")*/
                             +"&"+
                             URLEncoder.encode("date","UTF-8")+ "="+ URLEncoder.encode(date,"UTF-8")
                             +"&"+

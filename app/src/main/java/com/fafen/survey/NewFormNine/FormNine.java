@@ -132,26 +132,31 @@ public class FormNine extends AppCompatActivity {
                     public void onComplete(@NonNull Task task) {
                         Log.d(TAG, "getLocations: in onComplete function");
                         if (task.isSuccessful()) {
+                            double lat=0,lon=0;
                             currentLocation = (Location) task.getResult();
                             Log.d(TAG, "getLocations: data of location got in currentLocation variable ");
                             if (validateInternet()) {
 //                                Toast.makeText(com.sourcey.survey.NewFormNine.FormNine.this, " Latitude: " + currentLocation.getLatitude() + " Longitude: " + currentLocation.getLongitude(), Toast.LENGTH_LONG).show();
                                 DatabaseAsyncFormNine worker = new DatabaseAsyncFormNine(com.fafen.survey.NewFormNine.FormNine.this);
+if(currentLocation==null){
 
+    lat=currentLocation.getLatitude();
+   lon= currentLocation.getLongitude();
+}
 
                                 worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
-                                        ans4,
+                                      //  ans4,
                                         ans5,
                                         ans6,
                                         ans7,
-                                        ans8,
+                                       // ans8,
                                         ans9,
                                         currentDateandTime,
-                                        currentLocation.getLatitude() + "",
-                                        currentLocation.getLongitude() + ""
+                                        lat + "",
+                                        lon + ""
                                 );
 
                             } else {
@@ -167,27 +172,27 @@ public class FormNine extends AppCompatActivity {
                                 sb.append("\'" + ans2 + "\'");
                                 sb.append(",");
                                 sb.append("\'" + ans3 + "\'");
-                                sb.append(",");
-                                sb.append("\'" + ans4 + "\'");
+                               /* sb.append(",");
+                                sb.append("\'" + ans4 + "\'");*/
                                 sb.append(",");
                                 sb.append("\'" + ans5 + "\'");
                                 sb.append(",");
                                 sb.append("\'" + ans6 + "\'");
                                 sb.append(",");
                                 sb.append("\'" + ans7 + "\'");
-                                sb.append(",");
-                                sb.append("\'" + ans8 + "\'");
+                               /* sb.append(",");
+                                sb.append("\'" + ans8 + "\'");*/
                                 sb.append(",");
                                 sb.append("\'" + ans9 + "\'");
                                 sb.append(",");
                                 sb.append("\'" + currentDateandTime + "\'");
                                 sb.append(",");
-                                sb.append("\'" + currentLocation.getLatitude() + "\'");
+                                sb.append("\'" +lat + "\'");
                                 sb.append(",");
-                                sb.append("\'" + currentLocation.getLongitude() + "\'");
+                                sb.append("\'" + lon + "\'");
 
 
-                                query += "INSERT INTO form9survey (email,ans1 ,ans2, ans3, ans4, ans5,ans6,ans7,ans8,ans9,date, lati, longi) VALUES (" + sb.toString() + ")&";
+                                query += "INSERT INTO form9survey (email,ans1 ,ans2, ans3, ans4, ans5,ans6,ans7,date, lati, longi) VALUES (" + sb.toString() + ")&";
 
                                 editor.putBoolean("checkSync", true);
                                 editor.putString("query", query);
@@ -202,7 +207,7 @@ public class FormNine extends AppCompatActivity {
 
 
                         currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("FormNine", sharedPreferences.getString("ID","") + ans1 + ans2 + ans3 + ans4 + ans5 + ans6 + ans7 + ans8 + ans9 + currentDateandTime + currentLocation.getLongitude() + "" + currentLocation.getLongitude() + "").apply();
+                        sharedPreferences.edit().putString("FormNine", sharedPreferences.getString("ID","") + ans1 + ans2 + ans3  + ans5 + ans6 + ans7  + ans9 + currentDateandTime + currentLocation.getLongitude() + "" + currentLocation.getLongitude() + "").apply();
 
                     }
                 });
@@ -772,6 +777,8 @@ public class FormNine extends AppCompatActivity {
             button.setPressed(false);
 
             if (v.getId() == mButton5.getId()) {
+                com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = false;
+
                 final EditText input = new EditText(getActivity());
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 new AlertDialog.Builder(getActivity())
@@ -783,7 +790,54 @@ public class FormNine extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
-                                        ans4 = (input.getText().toString());
+                                        ans3 = (input.getText().toString().trim());
+                                        if (ans3 == null || ans3.isEmpty()) {
+                                            com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = false;
+                                            button.setSelected(false);
+                                        } else {
+                                            String value = ans3.replace(" ", "");
+                                            if (value.length() <= 0) {
+                                                com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = false;
+                                                button.setSelected(false);
+                                            } else {
+                                                com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = true;
+                                                ans3 = input.getText().toString().trim();
+                                                nextButton.performClick();
+
+                                            }
+                                        }
+
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = false;
+
+                                        dialog.cancel();
+                                    }
+                                })
+                        .show();
+            } else {
+                ans3 = button.getText().toString();
+                nextButton.performClick();
+            }
+            /*if (v.getId() == mButton5.getId()) {
+
+                final EditText input = new EditText(getActivity());
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Explain")
+                        .setMessage("Please describe others\n دیگر رکاوٹوں کی تفصیل بیان کریں۔")
+                        .setView(input)
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // get user input and set it to result
+                                        // edit text
+                                        ans4 = (input.getText().toString().trim());
                                         if (ans4 == null || ans4.equals("")) {
                                             com.fafen.survey.NewFormNine.FormNine.questionThreeAsnwered = false;
                                             button.setSelected(false);
@@ -810,7 +864,7 @@ public class FormNine extends AppCompatActivity {
             } else {
                 ans3 = button.getText().toString();
                 nextButton.performClick();
-            }
+            }*/
         }
     }
 
