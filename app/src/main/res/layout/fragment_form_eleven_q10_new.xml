@@ -88,11 +88,13 @@
                 android:text="Picture of Form 45 \n نتیجہ فارم45 کی تصویر اپ لوڈ کریں"
                 android:id="@+id/dynamicTextViewForm3"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:textSize="15dp"/>
 
             <!-- To display picture taken -->
             <ImageView
                 android:id="@+id/imgPreview"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible" />

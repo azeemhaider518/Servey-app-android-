@@ -283,8 +283,33 @@ public class FormTwo extends AppCompatActivity {
                         currentMinutes = timePicker12.getCurrentMinute();
                     }
 
-                    if ((currentHour == 0 && currentMinutes == 0) || (currentHour >= 17 && currentHour <= 23)){
+                    if ((currentHour == 0 && currentMinutes == 0) || (currentHour >= 17 && currentHour <= 23) || (currentHour<=2)){
                         Log.v("SelectedHour","Accepted Hour");
+
+                        if(currentHour==2 && currentMinutes!=0){
+                            Log.v("SelectedHour","Accepted Hour");
+                            AlertDialog.Builder builder;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                // Make sure that we are currently visible
+                                builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                            } else {
+                                builder = new AlertDialog.Builder(context);
+                            }
+                            builder.setTitle("Please select time between 5 PM to 12 AM")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // continue with delete
+                                            questionThreeAsnwered = false;
+                                        }
+                                    })
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                            return;
+                        }
+                        else {
+                            Log.v("SelectedHour","Accepted Hour");
+
+                        }
 
                     }else{
                         Log.v("SelectedHour","Accepted Hour");
@@ -651,6 +676,7 @@ public class FormTwo extends AppCompatActivity {
             timePicker.setIs24HourView(false);
             timePicker.setCurrentHour(17);
             timePicker.setCurrentMinute(0);
+
             timePicker12 = timePicker;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 ans3 = (timePicker.getHour() + ":" + timePicker.getMinute() + "");
