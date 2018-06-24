@@ -197,6 +197,7 @@ public class FormEleven extends AppCompatActivity
                                         ans8,
                                         ans9,
                                         ans10,
+                                        ans11,
                                         currentDateandTime,
                                         currentLocation.getLatitude()+"",
                                         currentLocation.getLongitude()+""
@@ -232,6 +233,8 @@ public class FormEleven extends AppCompatActivity
                                 sb.append(",");
                                 sb.append("\'"+ans10+"\'");
                                 sb.append(",");
+                                sb.append("\'"+ans11+"\'");
+                                sb.append(",");
                                 sb.append("\'"+currentDateandTime+"\'");
                                 sb.append(",");
                                 sb.append("\'"+currentLocation.getLatitude()+"\'");
@@ -240,7 +243,7 @@ public class FormEleven extends AppCompatActivity
 
 
 
-                                query += "INSERT INTO form11survey (email,ans1 ,ans2, ans3, ans4, ans5,ans6,ans7,ans8,ans9,ans10,date, lati, longi) VALUES ("+sb.toString()+")&";
+                                query += "INSERT INTO form11survey (email,ans1 ,ans2, ans3, ans4, ans5,ans6,ans7,ans8,ans9,ans10,ans11,date, lati, longi) VALUES ("+sb.toString()+")&";
 
                                 editor.putBoolean("checkSync",true);
                                 editor.putString("query", query);
