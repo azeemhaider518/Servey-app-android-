@@ -337,6 +337,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             com.fafen.survey.NewFormSeven.FormSeven.questionFiveAsnwered=false;
             com.fafen.survey.NewFormSeven.FormSeven.questionSixAsnwered=false;
             com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
+            com.fafen.survey.NewFormSeven.FormSeven.ans3="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans3_1="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans3_2="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans3_3="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_1="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_2="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_3="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_4="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_5="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_6="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_7="";
+            com.fafen.survey.NewFormSeven.FormSeven.ans7_8="";
             startActivityForResult(formSeven,7);
             return;
         }

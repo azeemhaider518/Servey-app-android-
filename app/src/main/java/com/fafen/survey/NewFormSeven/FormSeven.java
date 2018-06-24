@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -25,7 +24,6 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -33,13 +31,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fafen.survey.FormFive.FormFive;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.fafen.survey.FormOne.FormOne;
-import com.fafen.survey.NewFormSeven.DatabaseAsyncFormSeven;
 import com.fafen.survey.FormTwo.FormTwo;
 import com.fafen.survey.R;
 
@@ -47,9 +43,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
-
-import static com.fafen.survey.Util.Utiles.alert;
-import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
 
 
 public class FormSeven extends AppCompatActivity
@@ -61,7 +54,7 @@ public class FormSeven extends AppCompatActivity
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = "FormSeven";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    boolean doubleBackToExitPressedOnce = false;
+
     private static final String FINE_LOCATION = android.Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = android.Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean mLocationPermissionsGranted = false;
@@ -106,7 +99,6 @@ public class FormSeven extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_five);
-        setupUI(findViewById(R.id.parent));
 
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         final String currentDateandTime = df.format(Calendar.getInstance().getTime());
@@ -145,7 +137,7 @@ public class FormSeven extends AppCompatActivity
                             if(validateInternet())
                             {
 //                                Toast.makeText(com.sourcey.survey.NewFormSeven.FormSeven.this, " Latitude: " + currentLocation.getLatitude() + " Longitude: " + currentLocation.getLongitude(), Toast.LENGTH_LONG).show();
-                                DatabaseAsyncFormSeven worker = new DatabaseAsyncFormSeven(com.fafen.survey.NewFormSeven.FormSeven.this);
+                                DatabaseAsyncFormSeven worker = new DatabaseAsyncFormSeven(FormSeven.this);
 
 
                                 worker.execute((String.valueOf(sharedPreferences.getInt("ID",0))),
@@ -792,29 +784,29 @@ public class FormSeven extends AppCompatActivity
 
                                         // edit text
                                         btnselected = mButton4.getText().toString();
-                                        ans3_1 = input.getText().toString();
+                                        ans3_3 = input.getText().toString();
                                         Log.v("Answer3","Answer input: "+input.getText().toString());
-                                        String value = ans3_1;
+                                        String value = ans3_3;
                                         value = value.replace(" ","");
-                                        if (ans3_1!=null && value.length()>0){
-                                            Log.v("Answer3","1:"+ans3_1);
+                                        if (ans3_3!=null && value.length()>0){
+                                            Log.v("Answer3","1:"+ans3_3);
                                             button.setSelected(true);
                                             button.setPressed(false);
                                             if (checkAnswersQ3())
-                                                com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered=true;
+                                                questionThreeAsnwered=true;
                                             else{
                                                 if (ans3.contains(button.getText().toString())){
                                                     String[] values = ans3.split(",");
                                                     ans3 = "";
                                                     for (String i : values){
                                                         if (i.contains(button.getText().toString())){
-                                                            ans3 += ", "+button.getText().toString()+": "+ans3_1;
+                                                            ans3 += ", "+button.getText().toString()+": "+ans3_3;
                                                         }else{
                                                             ans3 += ", "+i;
                                                         }
                                                     }
                                                 }else{
-                                                    ans3 += ", "+button.getText().toString()+": "+ans3_1;
+                                                    ans3 += ", "+button.getText().toString()+": "+ans3_3;
                                                 }
                                             }
                                         }else{
@@ -822,7 +814,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setPressed(false);
                                         }
 
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered){
+                                        if (checkAnswersQ3()){
+                                            questionThreeAsnwered=true;
                                             nextButton.performClick();
                                         }
                                     }
@@ -860,7 +853,7 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(true);
                                             button.setPressed(false);
                                             if (checkAnswersQ3())
-                                                com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered=true;
+                                                questionThreeAsnwered=true;
                                             else{
                                                 if (ans3.contains(button.getText().toString())){
                                                     String[] values = ans3.split(",");
@@ -881,7 +874,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered){
+                                        if (checkAnswersQ3()){
+                                            questionThreeAsnwered=true;
                                             nextButton.performClick();
                                         }
                                     }
@@ -910,36 +904,37 @@ public class FormSeven extends AppCompatActivity
 
                                         // edit text
                                         btnselected = mButton2.getText().toString();
-                                        ans3_3 = input.getText().toString();
-                                        String value = ans3_3;
+                                        ans3_1 = input.getText().toString();
+                                        String value = ans3_1;
                                         value = value.replace(" ","");
                                         Log.v("Answer3","Answer input: "+input.getText().toString());
-                                        if (ans3_3!=null && value.length()>0){
-                                            Log.v("Answer3","3:"+ ans3_3);
+                                        if (ans3_1!=null && value.length()>0){
+                                            Log.v("Answer3","3:"+ ans3_1);
                                             button.setSelected(true);
                                             button.setPressed(false);
                                             if (checkAnswersQ3())
-                                                com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered=true;
+                                                questionThreeAsnwered=true;
                                             else{
                                                 if (ans3.contains(button.getText().toString())){
                                                     String[] values = ans3.split(",");
                                                     ans3 = "";
                                                     for (String i : values){
                                                         if (i.contains(button.getText().toString())){
-                                                            ans3 += ", "+button.getText().toString()+": "+ans3_3;
+                                                            ans3 += ", "+button.getText().toString()+": "+ans3_1;
                                                         }else{
                                                             ans3 += ", "+i;
                                                         }
                                                     }
                                                 }else{
-                                                    ans3 += ", "+button.getText().toString()+": "+ans3_3;
+                                                    ans3 += ", "+button.getText().toString()+": "+ans3_1;
                                                 }
                                             }
                                         }else{
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionThreeAsnwered){
+                                        if (checkAnswersQ3()){
+                                            questionThreeAsnwered=true;
                                             nextButton.performClick();
                                         }
                                     }
@@ -1453,8 +1448,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //  nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1465,7 +1460,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_1 = "";
+                                        //   ans7_1 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1521,8 +1516,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //   nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1533,7 +1528,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_2 = "";
+                                        //  ans7_2 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1588,8 +1583,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //  nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1600,7 +1595,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_3 = "";
+                                        //  ans7_3 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1655,8 +1650,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //     nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1667,7 +1662,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_4 = "";
+                                        //   ans7_4 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1722,8 +1717,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            // nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1734,7 +1729,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_5 = "";
+                                        //    ans7_5 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1790,8 +1785,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //   nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1802,7 +1797,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_6 = "";
+                                        //   ans7_6 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1858,8 +1853,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //  nextButton.performClick();
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
 
                                         }
@@ -1870,7 +1865,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_7 = "";
+                                        //    ans7_7 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1928,8 +1923,8 @@ public class FormSeven extends AppCompatActivity
                                             button.setSelected(false);
                                             button.setPressed(false);
                                         }
-                                        if (com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered){
-                                            nextButton.performClick();
+                                        if (checkAnswersQ7()){
+                                            //      nextButton.performClick();
                                             Log.v("Answer7","Question answered");
                                             com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(true);
                                         }
@@ -1940,7 +1935,7 @@ public class FormSeven extends AppCompatActivity
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        ans7_8 = "";
+                                        //   ans7_8 = "";
                                         com.fafen.survey.NewFormSeven.FormSeven.questionSevenAsnwered=false;
                                         com.fafen.survey.NewFormSeven.FormSeven.manageSubmit(false);
                                         dialog.cancel();
@@ -1953,22 +1948,42 @@ public class FormSeven extends AppCompatActivity
     }
 
     public static boolean checkAnswersQ3(){
-
-        if (ans3_1==null || ans3_1.equals(""))
-            return false;
-        if (ans3_2==null || ans3_2.equals(""))
-            return false;
-        if (ans3_3==null || ans3_3.equals(""))
-            return false;
-
         ans3 = ans3_1+","+ans3_2+","+ans3_3;
+        String s=ans3_1;
+        String ss=ans3_2;
+        String s0=ans3_3;
 
-        return true;
+
+        return !ans3_1.equals("") && !ans3_2.equals("") && !ans3_3.equals("");
+
+
+
+      /*  if (ans3_1==null ||ans3_1.equals("")){
+
+            return false;
+        }
+
+        else if (ans3_2==null&&ans3_2.equals("")){
+            return false;
+        }
+
+
+      else   if (ans3_3==null&&ans3_3.equals("")){
+            return false;
+        }else {
+
+
+            return true;
+        }*/
+
+
+
     }
 
     public static boolean checkAnswersQ7(){
+        return !ans7_1.equals("") && !ans7_2.equals("") && !ans7_3.equals("") && !ans7_4.equals("") && !ans7_5.equals("") && !ans7_6.equals("") && !ans7_7.equals("") && !ans7_8.equals("");
 
-        if (ans7_1==null || ans7_1.equals(""))
+       /* if (ans7_1==null || ans7_1.equals(""))
             return false;
         if (ans7_2==null || ans7_2.equals(""))
             return false;
@@ -1987,62 +2002,7 @@ public class FormSeven extends AppCompatActivity
 
         ans7 = ans7_1+","+ans7_2+","+ans7_3+","+ans7_4+","+ans7_5+","+ans7_6+","+ans7_7+","+ans7_8;
 
-        return true;
+        return true;*/
     }
 
-
-
-
-
-    @Override
-    public void onBackPressed() {
-
-        if (mPager.getCurrentItem() == 0) {
-            alert(FormSeven.this);
-
-            return;
-        }else if(doubleBackToExitPressedOnce){
-            alert(FormSeven.this);
-
-            return;
-        }
-
-
-        else{
-            backButton.performClick();
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
-
-    }
-
-    public  void setupUI(View view) {
-
-        // Set up touch listener for non-text box views to hide keyboard.
-        if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(FormSeven.this);
-                    return false;
-                }
-            });
-        }
-
-        //If a layout container, iterate over children and seed recursion.
-        if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                View innerView = ((ViewGroup) view).getChildAt(i);
-                setupUI(innerView);
-            }
-        }
-    }
 }
