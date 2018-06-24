@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -19,11 +21,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fafen.survey.FormTwo.FormTwo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,15 +54,19 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.fafen.survey.Util.Utiles.alert;
+import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
+
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     SharedPreferences sharedPreferences;
     public static Boolean AlreadyLogin = false;
-
-
+    LocationManager locationManager ;
+    boolean GpsStatus ;
+    String email, password;
     ProgressDialog progressDialog ;
-
+    boolean doubleBackToExitPressedOnce = false;
     @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login) Button _loginButton;
@@ -76,12 +85,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        setupUI(findViewById(R.id.parent));
         progressDialog= new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
+        sharedPreferences = getApplicationContext().getSharedPreferences("USER_ID",MODE_PRIVATE);
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+
                 if(AlreadyLogin==true)
                 {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
@@ -92,6 +105,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         getLocationPermission();
+
+        if(checkSession()){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+        else {
+
+        }
+    }
+
+    private boolean checkSession() {
+        if(sharedPreferences.getString("ID" , "").isEmpty())
+            return false;
+        else
+            return true;
+       // return true;
     }
 
 
@@ -143,7 +172,8 @@ public class LoginActivity extends AppCompatActivity {
 
             return;
         }
-        if(!isLocationEnabled(LoginActivity.this))
+      //  if(!isLocationEnabled(LoginActivity.this))
+        if(!CheckGpsStatus())
         {
             Toast.makeText(this,"Please Enable Your GPS first!",Toast.LENGTH_SHORT).show();
             onLoginFailed();
@@ -152,8 +182,8 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        email = _emailText.getText().toString();
+       password = _passwordText.getText().toString();
 
         BackGroundWorkUserSignin task = new BackGroundWorkUserSignin(LoginActivity.this);
         task.execute(email,password);
@@ -167,6 +197,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public boolean CheckGpsStatus(){
+
+        locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+
+        GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return GpsStatus;
+    }
     public static boolean isLocationEnabled(Context context)
     {
         int locationMode = 0;
@@ -254,8 +291,13 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
         progressDialog.dismiss();
         AlreadyLogin=true;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ID", email);
+        editor.putString("PASS",password);
+        editor.apply();
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
+        finish();
 
 
         finish();
@@ -291,11 +333,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(valid == true)
         {
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("USER_ID",MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("ID", email);
-            editor.putString("PASS",password);
-            editor.apply();
+
+
 
 
         }
@@ -466,6 +505,9 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result)
         {     //alertDialog.setMessage(result);
+            try{
+
+
             if(strResult.size()>0)
             {
                 String status = strResult.get(0);
@@ -488,7 +530,9 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(context, "Server Timed out!", Toast.LENGTH_SHORT).show();
             }
 
-
+            }catch (Exception e){
+                Toast.makeText(context, "Server Timed out!", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
@@ -497,6 +541,29 @@ public class LoginActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
+    public  void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(LoginActivity.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+
 
 
 }

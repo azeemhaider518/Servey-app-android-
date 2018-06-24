@@ -1,6 +1,7 @@
 package com.fafen.survey.FormFifteen;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -24,6 +26,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -31,6 +34,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fafen.survey.FormFourteen.EmrgFormOne;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +44,9 @@ import com.fafen.survey.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static com.fafen.survey.Util.Utiles.alert;
+import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
 
 public class EmrgFormTwo extends AppCompatActivity {
 
@@ -55,6 +62,7 @@ public class EmrgFormTwo extends AppCompatActivity {
     private Boolean mLocationPermissionsGranted = false;
 
     SharedPreferences sharedPreferences;
+    boolean doubleBackToExitPressedOnce=false;
 
     static final int NUMBER_OF_PAGES = 4;
     public static String ans1 = "", ans2 = "", ans3 = "", ans4 = "";
@@ -80,7 +88,7 @@ public class EmrgFormTwo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_thirteen);
         context = this;
-
+        setupUI(findViewById(R.id.parent));
         q2BtnId = 0;
         q3BtnId = 0;
         questionOneAsnwered = false;
@@ -134,7 +142,7 @@ public class EmrgFormTwo extends AppCompatActivity {
                                 DatabaseSyncEmrgFormTwo worker = new DatabaseSyncEmrgFormTwo(EmrgFormTwo.this);
 
 
-                                worker.execute((String.valueOf(sharedPreferences.getInt("ID", 0))),
+                                worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
@@ -150,7 +158,7 @@ public class EmrgFormTwo extends AppCompatActivity {
 
 
                                 StringBuilder sb = new StringBuilder();
-                                sb.append("\'" + String.valueOf(sharedPreferences.getInt("ID", 0) + "\'"));
+                                sb.append("\'" + String.valueOf(sharedPreferences.getString("ID","") + "\'"));
                                 sb.append(",");
                                 sb.append("\'" + ans1 + "\'");
                                 sb.append(",");
@@ -181,7 +189,7 @@ public class EmrgFormTwo extends AppCompatActivity {
 //                            Toast.makeText(EmrgFormTwo.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                         //currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getInt("ID", 0) + ans1 + ans2 + ans3 + ans4 + currentDateandTime + lat + "" + lon + "").apply();
+                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getString("ID","") + ans1 + ans2 + ans3 + ans4 + currentDateandTime + lat + "" + lon + "").apply();
                     }
                 });
 
@@ -247,14 +255,6 @@ public class EmrgFormTwo extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        q2BtnId = 0;
-
-        finish();
-        super.onBackPressed();  // optional depending on your needs
-
-    }
 
     public void setCurrentItem(int item, boolean smoothScroll) {
         mPager.setCurrentItem(item, smoothScroll);
@@ -729,6 +729,82 @@ public class EmrgFormTwo extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+    public  void setupUI(View view) {
 
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(EmrgFormTwo.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (mPager.getCurrentItem() == 0) {
+            alert(EmrgFormTwo.this);
+
+            return;
+        }else if(doubleBackToExitPressedOnce){
+            alert(EmrgFormTwo.this);
+
+            return;
+        }
+
+
+        else{
+            backButton.performClick();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+    }
+
+
+
+    public   void alert(final Activity activity){
+        new AlertDialog.Builder(activity)
+                .setTitle("Alert!")
+                .setMessage("Are you sure want to quit?")
+
+
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                q2BtnId = 0;
+                                activity.finish();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.dismiss();
+                            }
+                        })
+                .show();
+
+    }
 }
 

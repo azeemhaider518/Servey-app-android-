@@ -864,8 +864,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                                 if((sharedPreferences.getBoolean("airplanemode",false))==true) {
 
                                     DatabaseAirplaneMode databaseAirplaneMode = new DatabaseAirplaneMode(context);
-                                    databaseAirplaneMode.execute((String.valueOf(sharedPreferences.getInt("ID",0))),String.valueOf(sharedPreferences.getString("status",null)));
-                                    Toast.makeText(context,(String.valueOf(sharedPreferences.getInt("ID",0)))+String.valueOf(sharedPreferences.getString("status",null)),Toast.LENGTH_LONG).show();
+                                    databaseAirplaneMode.execute((String.valueOf(sharedPreferences.getString("ID",""))),String.valueOf(sharedPreferences.getString("status",null)));
+                                    Toast.makeText(context,(String.valueOf(sharedPreferences.getString("ID","")))+String.valueOf(sharedPreferences.getString("status",null)),Toast.LENGTH_LONG).show();
                                     sharedPreferences.edit().putBoolean("airplanemode",false).apply();
                                 }
 

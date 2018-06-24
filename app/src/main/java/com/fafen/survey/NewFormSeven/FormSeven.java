@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -44,6 +46,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
+import static com.fafen.survey.Util.Utiles.alert;
+import static com.fafen.survey.Util.Utiles.hideSoftKeyboard;
+
 
 public class FormSeven extends AppCompatActivity
 {
@@ -60,7 +65,7 @@ public class FormSeven extends AppCompatActivity
     private Boolean mLocationPermissionsGranted = false;
 
 
-
+    boolean doubleBackToExitPressedOnce = false;
 
     static final int NUMBER_OF_PAGES = 7;
     public static String ans1="",ans2="",ans3="",ans4="",ans5="",ans6="",ans7="";
@@ -99,6 +104,7 @@ public class FormSeven extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_five);
+        setupUI(findViewById(R.id.parent));
 
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         final String currentDateandTime = df.format(Calendar.getInstance().getTime());
@@ -140,7 +146,7 @@ public class FormSeven extends AppCompatActivity
                                 DatabaseAsyncFormSeven worker = new DatabaseAsyncFormSeven(FormSeven.this);
 
 
-                                worker.execute((String.valueOf(sharedPreferences.getInt("ID",0))),
+                                worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
@@ -161,7 +167,7 @@ public class FormSeven extends AppCompatActivity
 
 
                                 StringBuilder sb = new StringBuilder();
-                                sb.append("\'"+String.valueOf(sharedPreferences.getInt("ID",0)+"\'"));
+                                sb.append("\'"+String.valueOf(sharedPreferences.getString("ID","")+"\'"));
                                 sb.append(",");
                                 sb.append("\'"+ans1+"\'");
                                 sb.append(",");
@@ -203,7 +209,7 @@ public class FormSeven extends AppCompatActivity
 
 
                         currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("FormSeven",sharedPreferences.getInt("ID",0)+ans1+ans2+ans3+ans4+ans5+ans6+ans7+currentDateandTime+currentLocation.getLongitude()+""+currentLocation.getLongitude()+"").apply();
+                        sharedPreferences.edit().putString("FormSeven",sharedPreferences.getString("ID","")+ans1+ans2+ans3+ans4+ans5+ans6+ans7+currentDateandTime+currentLocation.getLongitude()+""+currentLocation.getLongitude()+"").apply();
 
 
                     }
@@ -906,7 +912,6 @@ public class FormSeven extends AppCompatActivity
                                         btnselected = mButton2.getText().toString();
                                         ans3_1 = input.getText().toString();
                                         String value = ans3_1;
-                                        value = value.replace(" ","");
                                         Log.v("Answer3","Answer input: "+input.getText().toString());
                                         if (ans3_1!=null && value.length()>0){
                                             Log.v("Answer3","3:"+ ans3_1);
@@ -2003,6 +2008,60 @@ public class FormSeven extends AppCompatActivity
         ans7 = ans7_1+","+ans7_2+","+ans7_3+","+ans7_4+","+ans7_5+","+ans7_6+","+ans7_7+","+ans7_8;
 
         return true;*/
+    }
+
+    public  void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(FormSeven.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        if (mPager.getCurrentItem() == 0) {
+            alert(FormSeven.this);
+
+            return;
+        }else if(doubleBackToExitPressedOnce){
+            alert(FormSeven.this);
+
+            return;
+        }
+
+
+        else{
+            backButton.performClick();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
     }
 
 }
