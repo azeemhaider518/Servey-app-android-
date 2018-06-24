@@ -382,8 +382,10 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... params)
         {
 
+        //    http://emis.creativecube.io/Servey-PHP/InsertForm.php
+       //     String ServerURL = "http://alahbabgroup.com/survey/Phone-Web-PHP/checkuser.php" ;
+            String ServerURL = "http://emis.creativecube.io/Servey-PHP/checkuser.php" ;
 
-            String ServerURL = "http://alahbabgroup.com/survey/Phone-Web-PHP/checkuser.php" ;
 
                 try {
                     publishProgress();
