@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -54,8 +55,9 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     SharedPreferences sharedPreferences;
     public static Boolean AlreadyLogin = false;
-
-
+    LocationManager locationManager ;
+    boolean GpsStatus ;
+    String email, password;
     ProgressDialog progressDialog ;
 
     @BindView(R.id.input_email) EditText _emailText;
@@ -76,12 +78,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
         progressDialog= new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
+        sharedPreferences = getApplicationContext().getSharedPreferences("USER_ID",MODE_PRIVATE);
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+
                 if(AlreadyLogin==true)
                 {
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
@@ -92,6 +98,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         getLocationPermission();
+
+        if(checkSession()){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+        else {
+
+        }
+    }
+
+    private boolean checkSession() {
+        if(sharedPreferences.getString("ID" , "").isEmpty())
+            return false;
+        else
+            return true;
+       // return true;
     }
 
 
@@ -143,7 +165,8 @@ public class LoginActivity extends AppCompatActivity {
 
             return;
         }
-        if(!isLocationEnabled(LoginActivity.this))
+      //  if(!isLocationEnabled(LoginActivity.this))
+        if(!CheckGpsStatus())
         {
             Toast.makeText(this,"Please Enable Your GPS first!",Toast.LENGTH_SHORT).show();
             onLoginFailed();
@@ -152,8 +175,8 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        email = _emailText.getText().toString();
+       password = _passwordText.getText().toString();
 
         BackGroundWorkUserSignin task = new BackGroundWorkUserSignin(LoginActivity.this);
         task.execute(email,password);
@@ -167,6 +190,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public boolean CheckGpsStatus(){
+
+        locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+
+        GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return GpsStatus;
+    }
     public static boolean isLocationEnabled(Context context)
     {
         int locationMode = 0;
@@ -254,8 +284,13 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
         progressDialog.dismiss();
         AlreadyLogin=true;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ID", email);
+        editor.putString("PASS",password);
+        editor.apply();
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
+        finish();
 
 
         finish();
@@ -291,11 +326,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(valid == true)
         {
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("USER_ID",MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("ID", email);
-            editor.putString("PASS",password);
-            editor.apply();
+
+
 
 
         }
@@ -466,6 +498,9 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result)
         {     //alertDialog.setMessage(result);
+            try{
+
+
             if(strResult.size()>0)
             {
                 String status = strResult.get(0);
@@ -488,7 +523,9 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(context, "Server Timed out!", Toast.LENGTH_SHORT).show();
             }
 
-
+            }catch (Exception e){
+                Toast.makeText(context, "Server Timed out!", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
