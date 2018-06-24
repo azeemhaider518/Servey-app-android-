@@ -87,6 +87,7 @@
                 android:text="Picture of Form 46 \n نتیجہ فارم46 کی تصویر اپ لوڈ کریں"
                 android:id="@+id/dynamicTextViewForm3"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:textSize="15dp"/>
 
             <!-- To display picture taken -->
