@@ -43,7 +43,7 @@ import java.util.Calendar;
 
 public class EmrgFormFive extends AppCompatActivity {
 
-    //This is from azeem 22
+
     private Location currentLocation;
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
@@ -165,7 +165,9 @@ public class EmrgFormFive extends AppCompatActivity {
                                 sb.append("\'" + lon + "\'");
 
 
-                                query += "INSERT INTO form1survey (email,ans1 ,ans2, ans3, ans4, date, lati, longi) VALUES (" + sb.toString() + ")&";
+                                // query += "INSERT INTO form1survey (email,ans1 ,ans2, ans3, ans4, date, lati, longi) VALUES (" + sb.toString().trim() + ")&";
+                                //$QRY = "INSERT INTO form17survey (email,ans1 ,ans2, ans3,date ,lati, longi) VALUES ('$id','$ans1','$ans2','$ans3','$date','$lati','$longi');";
+                                query += "INSERT INTO form17survey (email,ans1 ,ans2, ans3, ans4, date, lati, longi) VALUES (" + sb.toString().trim() + ")&";
 
                                 editor.putBoolean("checkSync", true);
                                 editor.putString("query", query);
@@ -178,7 +180,7 @@ public class EmrgFormFive extends AppCompatActivity {
                             Log.d(TAG, "getLocations: unable to complete location task");
 //                            Toast.makeText(EmrgFormFive.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
-                       // currentLocation = (Location) task.getResult();
+                        // currentLocation = (Location) task.getResult();
                         sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getInt("ID", 0) + ans1 + ans2 + ans3 + ans4 + currentDateandTime + lat + "" + lon + "").apply();
                     }
                 });
@@ -319,7 +321,7 @@ public class EmrgFormFive extends AppCompatActivity {
                 // If we are becoming invisible, then...
                 if (!isVisibleToUser) {
                     backButton.setVisibility(View.VISIBLE);
-                    ans1 = editText.getText().toString();
+                    ans1 = editText.getText().toString().trim();
                 }
             }
         }
@@ -355,13 +357,13 @@ public class EmrgFormFive extends AppCompatActivity {
                         questionOneAsnwered = false;
 
                     } else {
-                        String value = editText.getText().toString();
+                        String value = editText.getText().toString().trim();
                         value = value.replace(" ","");
                         if (value.length()>0)
                             questionOneAsnwered = true;
                         else
                             questionOneAsnwered = false;
-                        ans1 = editText.getText().toString();
+                        ans1 = editText.getText().toString().trim();
                     }
 
                 }
@@ -410,7 +412,7 @@ public class EmrgFormFive extends AppCompatActivity {
                 }
                 // If we are becoming invisible, then...
                 if (!isVisibleToUser) {
-                    // FormOne.answers.add(((RadioButton) v.findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString());
+                    // FormOne.answers.add(((RadioButton) v.findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString().trim());
                 }
             }
         }
@@ -499,7 +501,7 @@ public class EmrgFormFive extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
-                                        if (input.getText().toString().trim().equals("")) {
+                                        if (input.getText().toString().trim().isEmpty()) {
                                             button.setSelected(false);
                                             AlertDialog.Builder builder;
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -512,14 +514,14 @@ public class EmrgFormFive extends AppCompatActivity {
                                                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             // continue with delete
-                                                            questionTwoAsnwered = true;
+                                                            questionTwoAsnwered = false;
 
                                                         }
                                                     })
                                                     .setIcon(android.R.drawable.ic_dialog_alert)
                                                     .show();
                                         } else {
-                                            String value = input.getText().toString();
+                                            String value = input.getText().toString().trim();
                                             value = value.replace(" ","");
                                             if (value.length()>0){
                                                 questionTwoAsnwered = true;
@@ -545,7 +547,7 @@ public class EmrgFormFive extends AppCompatActivity {
                                                         .show();
                                             }
 
-                                            ans2 = (input.getText().toString());
+                                            ans2 = (input.getText().toString().trim());
                                         }
                                     }
                                 })
@@ -560,7 +562,7 @@ public class EmrgFormFive extends AppCompatActivity {
                         .show();
             } else {
                 questionTwoAsnwered = true;
-                ans2 = button.getText().toString();
+                ans2 = button.getText().toString().trim();
                 nextButton.performClick();
             }
         }
@@ -617,13 +619,13 @@ public class EmrgFormFive extends AppCompatActivity {
                         questionThreeAsnwered = false;
 
                     } else {
-                        String value = editText.getText().toString();
+                        String value = editText.getText().toString().trim();
                         value = value.replace(" ","");
                         if (value.length()>0)
                             questionThreeAsnwered = true;
                         else
                             questionThreeAsnwered = false;
-                        ans3 = editText.getText().toString();
+                        ans3 = editText.getText().toString().trim();
                     }
 
                 }
@@ -658,7 +660,7 @@ public class EmrgFormFive extends AppCompatActivity {
                         if(currentPage == NUMBER_OF_PAGES - 1) {
                             questionFourAsnwered = true;
                             doneButton.setVisibility(View.VISIBLE);
-                            ans4 = editText.getText().toString();
+                            ans4 = editText.getText().toString().trim();
                         }
                     }
                 }
@@ -706,7 +708,7 @@ public class EmrgFormFive extends AppCompatActivity {
 
                     } else {
                         if(currentPage == NUMBER_OF_PAGES - 1) {
-                            String value = editText.getText().toString();
+                            String value = editText.getText().toString().trim();
                             value = value.replace(" ","");
                             if (value.length()>0){
                                 questionFourAsnwered = true;
@@ -717,7 +719,7 @@ public class EmrgFormFive extends AppCompatActivity {
                                 doneButton.setVisibility(View.INVISIBLE);
                             }
 
-                            ans4 = editText.getText().toString();
+                            ans4 = editText.getText().toString().trim();
                         }
                     }
                 }

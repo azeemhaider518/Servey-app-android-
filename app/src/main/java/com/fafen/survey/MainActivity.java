@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             "Polling Station Turnout",
             "Final Result at Polling Station",
             "Incident of Violence at Polling Station",
-            "Citizens’ Interview",
+          /*  "Citizens’ Interview",
             "Profiling of Observers",
             "Observation of the Code of Conduct",
-            "Polling Stations’ Assessment",
+            "Polling Stations’ Assessment",*/
             "Denied Entry to an office",
             "Denied provision on documentation",
             "Stopped from observing any activity",
@@ -119,10 +119,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             "پولنگ اسٹیشن پر ووٹر ٹرن آؤٹ",
             "پولنگ اسٹیشن کا حتمی نتیجے کا فارم",
             "تشدد کے واقعات",
-            "الیکٹورل ایریا میں ووٹروں سے ملاقات",
+           /* "الیکٹورل ایریا میں ووٹروں سے ملاقات",
             "الیکٹورل ایریا سے انتخابات کے دن کے لئے مشاہدہ کاروں کی پروفائلنگ",
             "الیکٹورل ایریا میں ضابطہ اخلاق کا مشاہدہ",
-            "الیکٹورل ایریا میں قائم کئے گئے پولنگ اسٹیشنوں کا جائزہ",
+            "الیکٹورل ایریا میں قائم کئے گئے پولنگ اسٹیشنوں کا جائزہ",*/
             "",
             "",
             "",
@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             startActivityForResult(formOne,12);
             return;
         }
-        if(formNumber == 12)
+         /*if(formNumber == 12)
         {
             Intent formOne = new Intent(MainActivity.this, com.fafen.survey.NewFormThirteen.FormThirteen.class);
             com.fafen.survey.NewFormThirteen.FormThirteen.questionOneAsnwered=false;
@@ -533,9 +533,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             FormThirteen.questionSevenAnswerd=false;
             startActivityForResult(formOne,16);
             return;
-        }
+        }*/
 
-        if(formNumber == 16)
+        if(formNumber == 12)
         {
             Intent formOne = new Intent(MainActivity.this, EmrgFormOne.class);
             EmrgFormOne.questionOneAsnwered=false;
@@ -545,7 +545,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return;
         }
 
-        if(formNumber == 17)
+        if(formNumber == 13)
         {
             Intent formOne = new Intent(MainActivity.this, EmrgFormTwo.class);
             EmrgFormTwo.questionOneAsnwered=false;
@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return;
         }
 
-        if(formNumber == 18)
+        if(formNumber == 14)
         {
             Intent formOne = new Intent(MainActivity.this, EmrgFromThree.class);
             EmrgFormTwo.questionOneAsnwered=false;
@@ -567,7 +567,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return;
         }
 
-        if(formNumber == 19)
+        if(formNumber == 15)
         {
             Intent formOne = new Intent(MainActivity.this, EmrgFormFour.class);
             EmrgFormTwo.questionOneAsnwered=false;
@@ -578,7 +578,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return;
         }
 
-        if(formNumber == 20)
+        if(formNumber == 16)
         {
             Intent formOne = new Intent(MainActivity.this, EmrgFormFive.class);
             EmrgFormTwo.questionOneAsnwered=false;
