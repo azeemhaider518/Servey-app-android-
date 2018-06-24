@@ -1,6 +1,7 @@
 package com.fafen.survey.FormSeventeen;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -34,6 +36,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fafen.survey.FormSixteen.EmrgFromThree;
+import com.fafen.survey.Util.Utiles;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,6 +54,7 @@ public class EmrgFormFour extends AppCompatActivity {
 
     private Location currentLocation;
 
+     boolean doubleBackToExitPressedOnce=false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = "EmrgFormFour";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
@@ -100,6 +105,7 @@ public class EmrgFormFour extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_thirteen);
         context = this;
+        Utiles.setupUI(findViewById(R.id.parent),this);
 
 
         q6BtnId = 0;
@@ -175,7 +181,7 @@ public class EmrgFormFour extends AppCompatActivity {
                                 DatabaseSyncEmrgFormFour worker = new DatabaseSyncEmrgFormFour(EmrgFormFour.this);
 
 
-                                worker.execute((String.valueOf(sharedPreferences.getInt("ID", 0))),
+                                worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
@@ -199,7 +205,7 @@ public class EmrgFormFour extends AppCompatActivity {
 
 
                                 StringBuilder sb = new StringBuilder();
-                                sb.append("\'" + String.valueOf(sharedPreferences.getInt("ID", 0) + "\'"));
+                                sb.append("\'" + String.valueOf(sharedPreferences.getString("ID","") + "\'"));
                                 sb.append(",");
                                 sb.append("\'" + ans1 + "\'");
                                 sb.append(",");
@@ -246,7 +252,7 @@ public class EmrgFormFour extends AppCompatActivity {
 //                            Toast.makeText(EmrgFormFour.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                         //currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getInt("ID", 0) + ans1 + ans2 + ans3 + ans4 + ans4 + ans5 + ans6 + ans7 + ans8 + ans9 + ans10 + ans11 + ans12 + currentDateandTime + lat + "" + lon + "").apply();
+                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getString("ID","") + ans1 + ans2 + ans3 + ans4 + ans4 + ans5 + ans6 + ans7 + ans8 + ans9 + ans10 + ans11 + ans12 + currentDateandTime + lat + "" + lon + "").apply();
                     }
                 });
 
@@ -335,18 +341,6 @@ public class EmrgFormFour extends AppCompatActivity {
 
 
     }
-
-    @Override
-    public void onBackPressed() {
-        q6BtnId = 0;
-        q7BtnId = 0;
-        q8BtnId = 0;
-        q10BtnId = 0;
-        finish();
-        super.onBackPressed();  // optional depending on your needs
-
-    }
-
 
     public void setCurrentItem(int item, boolean smoothScroll) {
         mPager.setCurrentItem(item, smoothScroll);
@@ -1770,6 +1764,66 @@ public class EmrgFormFour extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+    @Override
+    public void onBackPressed() {
+
+        if (mPager.getCurrentItem() == 0) {
+            alert(EmrgFormFour.this);
+
+            return;
+        }else if(doubleBackToExitPressedOnce){
+            alert(EmrgFormFour.this);
+
+            return;
+        }
+
+
+        else{
+            backButton.performClick();
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+    }
+
+
+
+    public   void alert(final Activity activity){
+        new AlertDialog.Builder(activity)
+                .setTitle("Alert!")
+                .setMessage("Are you sure want to quit?")
+
+
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                q6BtnId = 0;
+                                q7BtnId = 0;
+                                q8BtnId = 0;
+                                q10BtnId = 0;
+                                activity.finish();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.dismiss();
+                            }
+                        })
+                .show();
+
+    }
+
 
 }
 

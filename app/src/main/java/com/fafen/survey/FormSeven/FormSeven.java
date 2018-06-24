@@ -138,7 +138,7 @@ public class FormSeven extends AppCompatActivity
                                 DatabaseAsyncFormSeven worker = new DatabaseAsyncFormSeven(FormSeven.this);
 
 
-                                worker.execute((String.valueOf(sharedPreferences.getInt("ID",0))),
+                                worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
@@ -159,7 +159,7 @@ public class FormSeven extends AppCompatActivity
 
 
                                 StringBuilder sb = new StringBuilder();
-                                sb.append("\'"+String.valueOf(sharedPreferences.getInt("ID",0)+"\'"));
+                                sb.append("\'"+String.valueOf(sharedPreferences.getString("ID","")+"\'"));
                                 sb.append(",");
                                 sb.append("\'"+ans1+"\'");
                                 sb.append(",");
@@ -201,7 +201,7 @@ public class FormSeven extends AppCompatActivity
 
 
                         currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("FormSeven",sharedPreferences.getInt("ID",0)+ans1+ans2+ans3+ans4+ans5+ans6+ans7+currentDateandTime+currentLocation.getLongitude()+""+currentLocation.getLongitude()+"").apply();
+                        sharedPreferences.edit().putString("FormSeven",sharedPreferences.getString("ID","")+ans1+ans2+ans3+ans4+ans5+ans6+ans7+currentDateandTime+currentLocation.getLongitude()+""+currentLocation.getLongitude()+"").apply();
 
 
                     }
