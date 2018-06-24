@@ -8,7 +8,7 @@
         android:textSize="25sp"
         android:gravity="center"
         android:background="#E1E2D4"
-        android:text="7 of 10"
+        android:text="8 of 10"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true" />

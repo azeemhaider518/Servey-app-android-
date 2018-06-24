@@ -324,6 +324,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             FormSix.questionThreeAsnwered=false;
             FormSix.questionFourAsnwered=false;
             FormSix.questionFiveAsnwered=false;
+            FormSix.ans1="";
+            FormSix.ans2="";
+            FormSix.ans3="";
+            FormSix.ans4="";
+            FormSix.ans5="";
             startActivityForResult(formSix,6);
             return;
         }
@@ -411,6 +416,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             com.fafen.survey.NewFormEleven.FormEleven.questionNineAnswerd=false;
             com.fafen.survey.NewFormEleven.FormEleven.questionTenAnswerd=false;
             com.fafen.survey.NewFormEleven.FormEleven.questionFiveAnswerd=false;
+            com.fafen.survey.NewFormEleven.FormEleven.ans7="";
+
             startActivityForResult(formOne,11);
             return;
         }

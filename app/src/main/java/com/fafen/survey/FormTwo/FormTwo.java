@@ -850,6 +850,7 @@ public class FormTwo extends AppCompatActivity {
             button.setPressed(false);
             final EditText input = new EditText(getActivity());
             if (v.getId() == mButton7.getId()) {
+                FormTwo.questionFourAsnwered = false;
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Any other, please elaborate \n دیگر افراد کی تفصیل")
