@@ -158,7 +158,8 @@ public class EmrgFromThree extends AppCompatActivity {
                                 sb.append("\'" + lon + "\'");
 
 
-                                query += "INSERT INTO form1survey (email,ans1 ,ans2, ans3, date, lati, longi) VALUES (" + sb.toString() + ")&";
+                                //$QRY = "INSERT INTO form15survey (email,ans1 ,ans2, ans3,date ,lati, longi) VALUES ('$id','$ans1','$ans2', '$ans3','$date','$lati','$longi');";
+                                query += "INSERT INTO form15survey (email,ans1 ,ans2, ans3, date, lati, longi) VALUES (" + sb.toString() + ")&";
 
                                 editor.putBoolean("checkSync", true);
                                 editor.putString("query", query);

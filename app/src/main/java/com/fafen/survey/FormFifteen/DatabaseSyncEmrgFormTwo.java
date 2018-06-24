@@ -47,7 +47,7 @@ public class DatabaseSyncEmrgFormTwo  extends AsyncTask<String,Void ,String> {
         {
 
             publishProgress();
-            String formNo = "form 15";
+            String formNo = "form 14";
             String id = params[0];
             String ans1 = params[1];
             String ans2 = params[2];

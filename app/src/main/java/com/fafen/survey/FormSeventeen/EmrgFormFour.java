@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -60,7 +61,8 @@ public class EmrgFormFour extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     static final int NUMBER_OF_PAGES = 12;
-    public static String ans1 = "", ans2 = "", ans3 = "", ans4 = "", ans5 = "", ans6 = "", ans7 = "", ans8 = "", ans9 = "", ans10 = "", ans11 = "", ans12 = "";
+    public static String ans1 = "", ans2 = "", ans3 = "", ans4 = "", ans5 = "", ans6 = "",
+            ans7 = "", ans8 = "", ans9 = "", ans10 = "", ans11 = "", ans12 = "", ans12Temp = "";
     public static boolean questionOneAsnwered = false;
     public static boolean questionTwoAsnwered = false;
     public static boolean questionThreeAsnwered = false;
@@ -77,12 +79,12 @@ public class EmrgFormFour extends AppCompatActivity {
     private static int q7BtnId;
     private static int q8BtnId;
     private static int q10BtnId;
-    private static boolean q12BtnId1= false;
-    private static boolean q12BtnId2= false;
-    private static boolean q12BtnId3= false;
-    private static boolean q12BtnId4= false;
-    private static boolean q12BtnId5= false;
-    private static boolean q12BtnId6= false;
+    private static boolean q12BtnId1 = false;
+    private static boolean q12BtnId2 = false;
+    private static boolean q12BtnId3 = false;
+    private static boolean q12BtnId4 = false;
+    private static boolean q12BtnId5 = false;
+    private static boolean q12BtnId6 = false;
     MyAdapter mAdapter;
     ViewPager mPager;
     static int currentPage = 0;
@@ -98,6 +100,7 @@ public class EmrgFormFour extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_thirteen);
         context = this;
+
 
         q6BtnId = 0;
         q7BtnId = 0;
@@ -122,7 +125,8 @@ public class EmrgFormFour extends AppCompatActivity {
         questionElevenAsnwered = false;
         questionTwelveAsnwered = false;
 
-        currentPage=0;
+        currentPage = 0;
+        ans12 = "";ans12Temp = "";
 
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         final String currentDateandTime = df.format(Calendar.getInstance().getTime());
@@ -150,13 +154,15 @@ public class EmrgFormFour extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task task) {
                         Log.d(TAG, "getLocations: in onComplete function");
-
-                        try{
+////calculate answer twelve data
+                        calculateQuestionTwelveResults();
+                        try {
                             currentLocation = (Location) task.getResult();
-                        }catch (Exception e){}
+                        } catch (Exception e) {
+                        }
                         double lat = 0;
                         double lon = 0;
-                        if (currentLocation!=null){
+                        if (currentLocation != null) {
                             lat = currentLocation.getLatitude();
                             lon = currentLocation.getLongitude();
                         }
@@ -226,7 +232,7 @@ public class EmrgFormFour extends AppCompatActivity {
                                 sb.append("\'" + lon + "\'");
 
 
-                                query += "INSERT INTO form1survey (email,ans1 ,ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10, ans11, ans12, date, lati, longi) VALUES (" + sb.toString() + ")&";
+                                query += "INSERT INTO form16survey (email,ans1 ,ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10, ans11, ans12, date, lati, longi) VALUES (" + sb.toString() + ")&";
 
                                 editor.putBoolean("checkSync", true);
                                 editor.putString("query", query);
@@ -245,6 +251,7 @@ public class EmrgFormFour extends AppCompatActivity {
                 });
 
 //                Toast.makeText(EmrgFormFour.this, "Done", Toast.LENGTH_LONG).show();
+
                 finish();
 
             }
@@ -398,6 +405,29 @@ public class EmrgFormFour extends AppCompatActivity {
         return activeNetwork != null && activeNetwork.isAvailable() && activeNetwork.isConnected();
     }
 
+    public void calculateQuestionTwelveResults() {
+
+        if (q12BtnId1)
+            ans12 = ans12 + "General voters,";
+
+        if (q12BtnId2)
+            ans12 = ans12 + "Women,";
+
+        if (q12BtnId3)
+            ans12 = ans12 + "Transgender,";
+
+        if (q12BtnId4)
+            ans12 = ans12 + "Non-Muslims,";
+
+        if (q12BtnId5)
+            ans12 = ans12 + "Persons with Disabilities,";
+
+        if (q12BtnId6)
+            ans12 = ans12 +","+ans12Temp;
+
+
+    }
+
     public static class FragmentOne extends Fragment {
 
 
@@ -450,8 +480,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionOneAsnwered = true;
                         else
                             questionOneAsnwered = false;
@@ -521,8 +551,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionTwoAsnwered = true;
                         else
                             questionTwoAsnwered = false;
@@ -593,8 +623,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionThreeAsnwered = true;
                         else
                             questionThreeAsnwered = false;
@@ -633,7 +663,8 @@ public class EmrgFormFour extends AppCompatActivity {
                 int input = Integer.parseInt(dest.toString() + source.toString());
                 if (isInRange(min, max, input))
                     return null;
-            } catch (NumberFormatException nfe) { }
+            } catch (NumberFormatException nfe) {
+            }
             return "";
         }
 
@@ -693,8 +724,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionFourAsnwered = true;
                         else
                             questionFourAsnwered = true;
@@ -764,8 +795,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionFiveAsnwered = true;
                         else
                             questionFiveAsnwered = true;
@@ -1088,11 +1119,11 @@ public class EmrgFormFour extends AppCompatActivity {
                                                     .show();
                                         } else {
                                             String value = input.getText().toString();
-                                            value = value.replace(" ","");
-                                            if (value.length()>0){
+                                            value = value.replace(" ", "");
+                                            if (value.length() > 0) {
                                                 questionEightAsnwered = true;
                                                 nextButton.performClick();
-                                            }else{
+                                            } else {
                                                 button.setSelected(false);
                                                 AlertDialog.Builder builder;
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -1258,11 +1289,11 @@ public class EmrgFormFour extends AppCompatActivity {
                                                     .show();
                                         } else {
                                             String value = input.getText().toString();
-                                            value = value.replace(" ","");
-                                            if (value.length()>0){
+                                            value = value.replace(" ", "");
+                                            if (value.length() > 0) {
                                                 questionTenAsnwered = true;
                                                 nextButton.performClick();
-                                            }else{
+                                            } else {
                                                 button.setSelected(false);
                                                 AlertDialog.Builder builder;
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -1304,7 +1335,6 @@ public class EmrgFormFour extends AppCompatActivity {
 
         }
     }
-
 
 
     public static class FragmentNine extends Fragment {
@@ -1357,8 +1387,8 @@ public class EmrgFormFour extends AppCompatActivity {
 
                     } else {
                         String value = editText.getText().toString();
-                        value = value.replace(" ","");
-                        if (value.length()>0)
+                        value = value.replace(" ", "");
+                        if (value.length() > 0)
                             questionNineAsnwered = true;
                         else
                             questionNineAsnwered = false;
@@ -1442,8 +1472,8 @@ public class EmrgFormFour extends AppCompatActivity {
                     } else {
                         if (currentPage == 10) {
                             String value = editText.getText().toString();
-                            value = value.replace(" ","");
-                            if (value.length()>0)
+                            value = value.replace(" ", "");
+                            if (value.length() > 0)
                                 questionElevenAsnwered = true;
                             else
                                 questionElevenAsnwered = false;
@@ -1468,53 +1498,53 @@ public class EmrgFormFour extends AppCompatActivity {
 
         //RadioGroup radioGroup;
         View v;
-        Button mButton1, mButton2, mButton3, mButton4, mButton5, mButton6;
+        //Button mButton1, mButton2, mButton3, mButton4, mButton5, mButton6;
+        CheckBox mButton1, mButton2, mButton3, mButton4, mButton5, mButton6;
+
+        public void checkSubmitButton() {
+            if ((!q12BtnId1 && !q12BtnId2 && !q12BtnId3 && !q12BtnId4 && !q12BtnId5 && !q12BtnId6)) {
+                doneButton.setVisibility(View.INVISIBLE);
+                questionTwelveAsnwered = false;
+            } else {
+                doneButton.setVisibility(View.VISIBLE);
+                questionTwelveAsnwered = true;
+            }
+
+        }
 
         @Override
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
 
             if (this.isVisible()) {
-                if(!mButton1.isSelected() && !mButton2.isSelected() &&
-                        !mButton3.isSelected() && !mButton4.isSelected()
-                        && !mButton5.isSelected() && !mButton6.isSelected()){
-                    doneButton.setVisibility(View.INVISIBLE);
-                }else{
-                    doneButton.setVisibility(View.VISIBLE);
-                }
-                if (mButton1 != null && mButton2 != null && mButton3 != null && mButton4 != null &&
-                        mButton5 != null && mButton6 != null) {
-                    if (q12BtnId1) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton1.setSelected(true);
-                    }
-                    if (q12BtnId2) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton2.setSelected(true);
-                    }
-                    if (q12BtnId3) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton3.setSelected(true);
-                    }
-                    if (q12BtnId4) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton4.setSelected(true);
-                    }
-                    if (q12BtnId5) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton5.setSelected(true);
-                    }
-                    if (q12BtnId6) {
-                        doneButton.setVisibility(View.VISIBLE);
-                        mButton6.setSelected(true);
-                    }
-                }
-                // If we are becoming invisible, then...
-                if (!isVisibleToUser) {
-                    doneButton.setVisibility(View.INVISIBLE);
 
-                    // FormOne.answers.add(((RadioButton) v.findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString());
+                checkSubmitButton();
+                if (q12BtnId1) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton1.setSelected(true);
                 }
+                if (q12BtnId2) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton2.setSelected(true);
+                }
+                if (q12BtnId3) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton3.setSelected(true);
+                }
+                if (q12BtnId4) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton4.setSelected(true);
+                }
+                if (q12BtnId5) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton5.setSelected(true);
+                }
+                if (q12BtnId6) {
+                    doneButton.setVisibility(View.VISIBLE);
+                    mButton6.setSelected(true);
+                }
+
+                checkSubmitButton();
             }
         }
 
@@ -1537,12 +1567,12 @@ public class EmrgFormFour extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             v = inflater.inflate(R.layout.emrg_form_four_q12, container, false);
-            mButton1 = v.findViewById(R.id.btn1);
-            mButton2 = v.findViewById(R.id.btn2);
-            mButton3 = v.findViewById(R.id.btn3);
-            mButton4 = v.findViewById(R.id.btn4);
-            mButton5 = v.findViewById(R.id.btn5);
-            mButton6 = v.findViewById(R.id.btn6);
+            mButton1 = v.findViewById(R.id.checkBox1);
+            mButton2 = v.findViewById(R.id.checkBox2);
+            mButton3 = v.findViewById(R.id.checkBox3);
+            mButton4 = v.findViewById(R.id.checkBox4);
+            mButton5 = v.findViewById(R.id.checkBox5);
+            mButton6 = v.findViewById(R.id.checkBox6);
 
             mButton1.setOnClickListener(this);
             mButton2.setOnClickListener(this);
@@ -1564,32 +1594,52 @@ public class EmrgFormFour extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             final Button button = (Button) v;
-            if(button.getId() == mButton1.getId()){
-                q12BtnId1=true;
-            }
+            if (button.getId() == mButton1.getId()) {
 
-            if(button.getId() == mButton2.getId()){
-                q12BtnId2=true;
-
-            }
-
-            if(button.getId() == mButton3.getId()){
-                q12BtnId3=true;
+                if (mButton1.isChecked()) {
+                    q12BtnId1 = true;
+                } else {
+                    q12BtnId1 = false;
+                }
 
             }
 
-            if(button.getId() == mButton4.getId()){
-                q12BtnId4=true;
+            if (button.getId() == mButton2.getId()) {
+                if (mButton2.isChecked())
+                    q12BtnId2 = true;
+                else
+                    q12BtnId2 = false;
 
             }
 
-            if(button.getId() == mButton5.getId()){
-                q12BtnId5=true;
+            if (button.getId() == mButton3.getId()) {
+                if (mButton3.isChecked())
+                    q12BtnId3 = true;
+                else
+                    q12BtnId3 = false;
 
             }
 
-            if(button.getId() == mButton6.getId()){
-                q12BtnId6=true;
+            if (button.getId() == mButton4.getId()) {
+                if (mButton4.isChecked())
+                    q12BtnId4 = true;
+                else
+                    q12BtnId4 = false;
+            }
+
+            if (button.getId() == mButton5.getId()) {
+                if (mButton5.isChecked())
+                    q12BtnId5 = true;
+                else
+                    q12BtnId5 = false;
+
+            }
+
+            if (button.getId() == mButton6.getId()) {
+                if (mButton6.isChecked())
+                    q12BtnId6 = true;
+                else
+                    q12BtnId6 = false;
 
             }
 //            // clear state
@@ -1635,12 +1685,9 @@ public class EmrgFormFour extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             // continue with delete
                                                             questionTwelveAsnwered = false;
-                                                            q12BtnId6=false;
-                                                            if(!mButton1.isSelected() && !mButton2.isSelected() &&
-                                                                    !mButton3.isSelected() && !mButton4.isSelected()
-                                                                    && !mButton5.isSelected() && !mButton6.isSelected()){
-                                                                doneButton.setVisibility(View.INVISIBLE);
-                                                            }
+                                                            q12BtnId6 = false;
+                                                            mButton6.setChecked(false);
+                                                            checkSubmitButton();
 
 
                                                         }
@@ -1649,11 +1696,13 @@ public class EmrgFormFour extends AppCompatActivity {
                                                     .show();
                                         } else {
                                             String value = input.getText().toString();
-                                            value = value.replace(" ","");
-                                            if (value.length()>0){
+                                            value = value.replace(" ", "");
+                                            if (value.length() > 0) {
+                                                ans12Temp = value.toString().trim();
                                                 questionTwelveAsnwered = true;
                                                 doneButton.setVisibility(View.VISIBLE);
-                                            }else{
+
+                                            } else {
                                                 button.setSelected(false);
                                                 AlertDialog.Builder builder;
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -1667,13 +1716,9 @@ public class EmrgFormFour extends AppCompatActivity {
                                                             public void onClick(DialogInterface dialog, int which) {
                                                                 // continue with delete
                                                                 questionTwelveAsnwered = false;
-                                                                q12BtnId6=false;
-                                                                if(!mButton1.isSelected() && !mButton2.isSelected() &&
-                                                                        !mButton3.isSelected() && !mButton4.isSelected()
-                                                                        && !mButton5.isSelected() && !mButton6.isSelected()){
-                                                                    doneButton.setVisibility(View.INVISIBLE);
-                                                                }
-
+                                                                q12BtnId6 = false;
+                                                                mButton6.setChecked(false);
+                                                                checkSubmitButton();
 
                                                             }
                                                         })
@@ -1681,7 +1726,6 @@ public class EmrgFormFour extends AppCompatActivity {
                                                         .show();
                                             }
 
-                                            ans12 = ans12 + (input.getText().toString());
                                         }
                                     }
                                 })
@@ -1691,14 +1735,20 @@ public class EmrgFormFour extends AppCompatActivity {
                                         dialog.cancel();
                                         button.setSelected(false);
                                         questionTwelveAsnwered = false;
+                                        q12BtnId6 = false;
+                                        mButton6.setChecked(false);
+                                        checkSubmitButton();
+
                                     }
                                 })
                         .show();
-            } else {
+            }
+            /*else {
                 questionTwelveAsnwered = true;
                 doneButton.setVisibility(View.VISIBLE);
                 ans12 = ans12 + button.getText().toString();
-            }
+            }*/
+            checkSubmitButton();
 
         }
     }

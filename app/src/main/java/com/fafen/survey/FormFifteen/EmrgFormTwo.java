@@ -167,7 +167,7 @@ public class EmrgFormTwo extends AppCompatActivity {
                                 sb.append("\'" + lon + "\'");
 
 
-                                query += "INSERT INTO form1survey (email,ans1 ,ans2, ans3, ans4, date, lati, longi) VALUES (" + sb.toString() + ")&";
+                                query += "INSERT INTO form14survey  (email,ans1 ,ans2, ans3, ans4, date, lati, longi) VALUES (" + sb.toString() + ")&";
 
                                 editor.putBoolean("checkSync", true);
                                 editor.putString("query", query);
