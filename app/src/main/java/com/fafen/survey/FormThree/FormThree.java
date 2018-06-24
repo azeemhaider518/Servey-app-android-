@@ -1419,7 +1419,7 @@ public class FormThree extends AppCompatActivity
             button.setSelected(true);
             button.setPressed(false);
             if (v.getId() == mButton4.getId())
-            {
+            {FormThree.questionSixAnswerd = false;
                 final EditText input = new EditText(getActivity());
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 new AlertDialog.Builder(getActivity())
