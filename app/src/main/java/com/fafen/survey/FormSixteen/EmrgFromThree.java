@@ -128,7 +128,7 @@ public class EmrgFromThree extends AppCompatActivity {
                                 DatabaseSyncEmrgFromThree worker = new DatabaseSyncEmrgFromThree(EmrgFromThree.this);
 
 
-                                worker.execute((String.valueOf(sharedPreferences.getInt("ID", 0))),
+                                worker.execute((String.valueOf(sharedPreferences.getString("ID",""))),
                                         ans1,
                                         ans2,
                                         ans3,
@@ -143,7 +143,7 @@ public class EmrgFromThree extends AppCompatActivity {
 
 
                                 StringBuilder sb = new StringBuilder();
-                                sb.append("\'" + String.valueOf(sharedPreferences.getInt("ID", 0) + "\'"));
+                                sb.append("\'" + String.valueOf(sharedPreferences.getString("ID","") + "\'"));
                                 sb.append(",");
                                 sb.append("\'" + ans1 + "\'");
                                 sb.append(",");
@@ -173,7 +173,7 @@ public class EmrgFromThree extends AppCompatActivity {
 //                            Toast.makeText(EmrgFromThree.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                         //currentLocation = (Location) task.getResult();
-                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getInt("ID", 0) + ans1 + ans2 + ans3 + currentDateandTime + lat + "" +lon + "").apply();
+                        sharedPreferences.edit().putString("EmrgFormTwo", sharedPreferences.getString("ID","") + ans1 + ans2 + ans3 + currentDateandTime + lat + "" +lon + "").apply();
                     }
                 });
 
