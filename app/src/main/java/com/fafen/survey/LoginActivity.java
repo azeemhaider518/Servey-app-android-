@@ -200,8 +200,12 @@ public class LoginActivity extends AppCompatActivity {
     public boolean CheckGpsStatus(){
 
         locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-
         GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+          if(isLocationEnabled(LoginActivity.this))
+          {
+
+          }
+
         return GpsStatus;
     }
     public static boolean isLocationEnabled(Context context)

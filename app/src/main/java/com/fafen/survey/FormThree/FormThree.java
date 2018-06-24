@@ -53,6 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.fafen.survey.HttpRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,6 +65,7 @@ import com.fafen.survey.HttpRequestImageLoadTask;
 import com.fafen.survey.HttpRequestLongOperation;
 import com.fafen.survey.R;
 import com.fafen.survey.Upload;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.net.URI;
@@ -117,6 +119,7 @@ public class FormThree extends AppCompatActivity
 
     public static boolean isCreated = true;
 
+    static ProgressDialog image_upload;
 
     MyAdapter mAdapter;
     ViewPager mPager;
@@ -1712,11 +1715,17 @@ public class FormThree extends AppCompatActivity
         {
             super.onActivityResult(requestCode, resultCode, data);
             if (resultCode == RESULT_OK && requestCode == 1) {
+
+                image_upload = new ProgressDialog(context);
+                image_upload.setTitle("uploading");
+                image_upload.show();
                 selectedImageUri = data.getData();
+
                 doneButton.setVisibility(View.INVISIBLE);
 
                 imageUploaded = true;
                 ImageView imageViewImage = v.findViewById(R.id.imgPreview);
+                Picasso.get().load(selectedImageUri).into(imageViewImage);
                 imageViewImage.setImageURI(selectedImageUri);
 //
 //                Bitmap photo = (Bitmap) data.getExtras().get("data");
@@ -1760,6 +1769,7 @@ public class FormThree extends AppCompatActivity
                         imageUploadResult();
 
                         loadImage();
+                        image_upload.hide();
 
                     }
                 });

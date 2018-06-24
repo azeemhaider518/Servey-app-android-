@@ -114,6 +114,7 @@ public class FormEleven extends AppCompatActivity
     ViewPager mPager;
     int currentPage = 0;
 
+    static ProgressDialog image_upload;
     public static Button nextButton;
     Button backButton;
     static Button doneButton;
@@ -1909,6 +1910,9 @@ public class FormEleven extends AppCompatActivity
             if (resultCode == RESULT_OK && requestCode == 12) {
                 Uri selectedImageUri = data.getData();
                 image11 = selectedImageUri;
+                image_upload = new ProgressDialog(getContext());
+                image_upload.setTitle("uploading");
+                image_upload.show();
                 doneButton.setVisibility(View.INVISIBLE);
 
                 // Set image
@@ -1966,7 +1970,7 @@ public class FormEleven extends AppCompatActivity
                         imageUploadResult();
 
                         loadImage();
-
+                        image_upload.hide();
                     }
                 });
                 task.execute();
